@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tour Reservation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .booking-list {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .booking-item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .booking-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tour Reservation</h1>
+
+  <form id="reservationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required />
+
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" required />
+
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" required />
+
+    <button type="submit">Book Tour</button>
+  </form>
+
+  <div class="bookings">
+    <h2>Upcoming Bookings</h2>
+    <div id="bookingList" class="booking-list">
+      <!-- Bookings will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('reservationForm');
+    const bookingList = document.getElementById('bookingList');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+
+      const bookingItem = document.createElement('div');
+      bookingItem.className = 'booking-item';
+      bookingItem.innerHTML = `<strong>${name}</strong> (${email})<br>
+                               Tour: ${start} to ${end}`;
+      bookingList.appendChild(bookingItem);
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
